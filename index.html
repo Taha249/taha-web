@@ -789,7 +789,10 @@
             <div class="mt-10 reveal">
                 <h4 class="font-semibold text-slate-900 text-xl mb-4">Certification Photos</h4>
                 <div class="relative">
-                    <div class="flex gap-4 overflow-x-auto pb-4 hide-scrollbar snap-x snap-mandatory">
+                    <button id="certPrev" type="button" class="absolute left-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 text-slate-700 shadow-lg p-3 hover:bg-white transition-all">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div id="certScroll" class="flex gap-4 overflow-x-auto pb-4 pl-14 pr-14 hide-scrollbar snap-x snap-mandatory scroll-smooth">
                         <article class="min-w-[280px] snap-start bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex-shrink-0">
                             <img src="cert-gvs.jpg" alt="GVS Sales & Technical Training" class="h-44 w-full object-cover">
                             <div class="p-4">
@@ -812,10 +815,9 @@
                             </div>
                         </article>
                     </div>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50"></div>
-                </div>
-                        </article>
-                    </div>
+                    <button id="certNext" type="button" class="absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 text-slate-700 shadow-lg p-3 hover:bg-white transition-all">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                     <div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50"></div>
                 </div>
             </div>
@@ -961,6 +963,21 @@
                 }
             });
         });
+
+        // Certification gallery arrows
+        const certScroll = document.getElementById('certScroll');
+        const certPrev = document.getElementById('certPrev');
+        const certNext = document.getElementById('certNext');
+
+        if (certScroll && certPrev && certNext) {
+            const scrollAmount = 320;
+            certPrev.addEventListener('click', () => {
+                certScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+            certNext.addEventListener('click', () => {
+                certScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+        }
 
         // Active nav link highlighting
         const sections = document.querySelectorAll('section[id]');
