@@ -69,6 +69,27 @@
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
+        .marquee {
+            overflow: hidden;
+            position: relative;
+        }
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        .marquee-item {
+            min-width: 280px;
+            flex-shrink: 0;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
         .project-card {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -116,12 +137,52 @@
         .nav-link:hover::after {
             width: 100%;
         }
-        .cert-card {
-            transition: all 0.3s ease;
-        }
         .cert-card:hover {
             transform: scale(1.02);
             border-color: #3b82f6;
+        }
+        .animated-border {
+            position: relative;
+            border-radius: 2rem;
+            overflow: visible;
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+        }
+        .hero-image-shell {
+            position: relative;
+            width: min(100%, 420px);
+            margin: 0 auto;
+            overflow: visible;
+        }
+        .hero-image-bg {
+            position: absolute;
+            top: -16px;
+            left: -14px;
+            width: calc(100% + 28px);
+            height: calc(100% + 36px);
+            background: radial-gradient(circle at 20% 20%, rgba(251, 146, 60, 0.55), transparent 28%), radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.32), transparent 24%), radial-gradient(circle at 45% 80%, rgba(59, 130, 246, 0.16), transparent 34%);
+            clip-path: polygon(10% 0%, 100% 5%, 94% 72%, 66% 100%, 28% 88%, 0% 50%);
+            filter: blur(2px);
+            z-index: 0;
+            transform: rotate(-5deg);
+        }
+        .hero-frame-inner {
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(15% 0%, 100% 5%, 94% 72%, 64% 100%, 28% 88%, 0% 52%);
+            background: rgba(255, 255, 255, 0.08);
+            border: 6px solid rgba(255, 255, 255, 0.95);
+            z-index: 1;
+        }
+        .hero-frame-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .hero-frame-inner:hover img {
+            transform: scale(1.03);
         }
     </style>
 </head>
@@ -176,13 +237,11 @@
                         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                         Available for Opportunities
                     </div>
-                    <div class="flex items-center justify-center lg:justify-start gap-6 mb-4 flex-row-reverse lg:flex-row">
-                        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight whitespace-nowrap">
+                    <div class="reveal">
+                        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-tight whitespace-nowrap mb-4">
                             Taha Hamed
                         </h1>
-                        <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-2xl bg-slate-900 flex-shrink-0">
-                            <img src="photo.jpg" alt="Taha Hamed" onerror="this.style.display='none'" class="w-full h-full object-cover">
-                        </div>
+                        <h2 class="text-2xl md:text-3xl font-semibold text-slate-200 mb-6">Automation Project Manager</h2>
                     </div>
                     <p class="text-xl md:text-2xl text-slate-200 mb-6 font-light max-w-3xl lg:max-w-2xl">
                         Dynamic Project Engineer and Automation Specialist with proven expertise in orchestrating end-to-end smart building projects, KNX/IoT integration, stakeholder alignment, and scalable system delivery.
@@ -198,7 +257,7 @@
 
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto lg:mx-0">
                         <div class="rounded-3xl bg-white/10 border border-white/20 p-4 text-center">
-                            <div class="text-3xl font-bold text-white">4</div>
+                            <div class="text-3xl font-bold text-white">3</div>
                             <div class="text-sm text-slate-300 mt-1">Years Experience</div>
                         </div>
                         <div class="rounded-3xl bg-white/10 border border-white/20 p-4 text-center">
@@ -216,26 +275,11 @@
                     </div>
                 </div>
 
-                <div class="relative max-w-md mx-auto">
-                    <div class="absolute -inset-1 rounded-[2rem] bg-white/10 blur-3xl"></div>
-                    <div class="relative overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 backdrop-blur-xl p-6 shadow-2xl">
-                        <div class="relative overflow-hidden rounded-[1.75rem] bg-slate-900">
-                            <img src="photo.jpg" alt="Taha Hamed" onerror="this.style.display='none'" class="w-full h-[430px] object-cover rounded-[1.75rem]">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
-                        </div>
-                        <div class="mt-6 text-left text-white">
-                            <h2 class="text-3xl font-semibold mb-2">Automation Project Manager</h2>
-                            <p class="text-slate-300 mb-4">Riyadh, Saudi Arabia • +966 56 939 4215</p>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div class="rounded-3xl bg-white/10 border border-white/10 p-4">
-                                    <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2">Current Role</p>
-                                    <p class="font-semibold">Smart Life</p>
-                                </div>
-                                <div class="rounded-3xl bg-white/10 border border-white/10 p-4">
-                                    <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2">Specialty</p>
-                                    <p class="font-semibold">Smart Buildings</p>
-                                </div>
-                            </div>
+                <div class="relative max-w-md mx-auto reveal">
+                    <div class="hero-image-shell animated-border shadow-2xl">
+                        <div class="hero-image-bg"></div>
+                        <div class="hero-frame-inner">
+                            <img src="photo.jpeg" alt="Taha Hamed" onerror="this.style.display='none'" class="w-full h-[430px] object-cover">
                         </div>
                     </div>
                 </div>
@@ -582,7 +626,7 @@
             </div>
 
             <!-- Project Stats -->
-            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-5 gap-6 reveal">
                 <div class="bg-white p-6 rounded-2xl text-center border border-slate-100 shadow-sm">
                     <div class="text-3xl font-bold text-blue-600 mb-1">15+</div>
                     <div class="text-sm text-slate-500">KNX Projects</div>
@@ -590,6 +634,10 @@
                 <div class="bg-white p-6 rounded-2xl text-center border border-slate-100 shadow-sm">
                     <div class="text-3xl font-bold text-violet-600 mb-1">60+</div>
                     <div class="text-sm text-slate-500">FIBARO Systems</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl text-center border border-slate-100 shadow-sm">
+                    <div class="text-3xl font-bold text-slate-600 mb-1">30+</div>
+                    <div class="text-sm text-slate-500">ZigBee Projects</div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl text-center border border-slate-100 shadow-sm">
                     <div class="text-3xl font-bold text-slate-600 mb-1">5+</div>
@@ -788,37 +836,107 @@
 
             <div class="mt-10 reveal">
                 <h4 class="font-semibold text-slate-900 text-xl mb-4">Certification Photos</h4>
-                <div class="relative">
-                    <button id="certPrev" type="button" class="absolute left-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 text-slate-700 shadow-lg p-3 hover:bg-white transition-all">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div id="certScroll" class="flex gap-4 overflow-x-auto pb-4 pl-14 pr-14 hide-scrollbar snap-x snap-mandatory scroll-smooth">
-                        <article class="min-w-[280px] snap-start bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex-shrink-0">
+                <div class="marquee">
+                    <div class="marquee-track">
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
                             <img src="cert-gvs.jpg" alt="GVS Sales & Technical Training" class="h-44 w-full object-cover">
                             <div class="p-4">
                                 <h5 class="font-semibold text-slate-900">GVS Sales & Technical Training</h5>
                                 <p class="text-slate-500 text-sm mt-2">GVS / Entech • 2026</p>
                             </div>
-                        </article>
-                        <article class="min-w-[280px] snap-start bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex-shrink-0">
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
                             <img src="cert-ccna-intro.jpg" alt="CCNA Introduction to Networks" class="h-44 w-full object-cover">
                             <div class="p-4">
                                 <h5 class="font-semibold text-slate-900">CCNA Introduction to Networks</h5>
                                 <p class="text-slate-500 text-sm mt-2">Cisco • Jan 2026</p>
                             </div>
-                        </article>
-                        <article class="min-w-[280px] snap-start bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex-shrink-0">
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
                             <img src="cert-ccna-routing.jpg" alt="CCNA Switching, Routing, and Wireless Essentials" class="h-44 w-full object-cover">
                             <div class="p-4">
                                 <h5 class="font-semibold text-slate-900">CCNA Switching, Routing & Wireless</h5>
                                 <p class="text-slate-500 text-sm mt-2">Cisco • Jan 2026</p>
                             </div>
-                        </article>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="knx-basic.png" alt="KNX Basic Certificate" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">KNX Basic Certificate</h5>
+                                <p class="text-slate-500 text-sm mt-2">KNX Association • Oct 2025</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="KNX Advanced.png" alt="KNX Advanced Certificate" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">KNX Advanced Certificate</h5>
+                                <p class="text-slate-500 text-sm mt-2">KNX Association • Apr 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="knx-hvac.png" alt="KNX HVAC Certificate" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">KNX HVAC Certificate</h5>
+                                <p class="text-slate-500 text-sm mt-2">KNX Association • Apr 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="dali.png" alt="Advanced Lighting Control with KNX and DALI" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">Advanced Lighting Control</h5>
+                                <p class="text-slate-500 text-sm mt-2">Schneider • Jan 2025</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="cert-gvs.jpg" alt="GVS Sales & Technical Training" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">GVS Sales & Technical Training</h5>
+                                <p class="text-slate-500 text-sm mt-2">GVS / Entech • 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="cert-ccna-intro.jpg" alt="CCNA Introduction to Networks" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">CCNA Introduction to Networks</h5>
+                                <p class="text-slate-500 text-sm mt-2">Cisco • Jan 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="cert-ccna-routing.jpg" alt="CCNA Switching, Routing, and Wireless Essentials" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">CCNA Switching, Routing & Wireless</h5>
+                                <p class="text-slate-500 text-sm mt-2">Cisco • Jan 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="knx-basic.png" alt="KNX Basic Certificate" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">KNX Basic Certificate</h5>
+                                <p class="text-slate-500 text-sm mt-2">KNX Association • Oct 2025</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="KNX Advanced.png" alt="KNX Advanced Certificate" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">KNX Advanced Certificate</h5>
+                                <p class="text-slate-500 text-sm mt-2">KNX Association • Apr 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="knx-hvac.png" alt="KNX HVAC Certificate" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">KNX HVAC Certificate</h5>
+                                <p class="text-slate-500 text-sm mt-2">KNX Association • Apr 2026</p>
+                            </div>
+                        </div>
+                        <div class="marquee-item bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                            <img src="dali.png" alt="Advanced Lighting Control with KNX and DALI" class="h-44 w-full object-cover">
+                            <div class="p-4">
+                                <h5 class="font-semibold text-slate-900">Advanced Lighting Control</h5>
+                                <p class="text-slate-500 text-sm mt-2">Schneider • Jan 2025</p>
+                            </div>
+                        </div>
                     </div>
-                    <button id="certNext" type="button" class="absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 text-slate-700 shadow-lg p-3 hover:bg-white transition-all">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-slate-50"></div>
                 </div>
             </div>
 
@@ -963,21 +1081,6 @@
                 }
             });
         });
-
-        // Certification gallery arrows
-        const certScroll = document.getElementById('certScroll');
-        const certPrev = document.getElementById('certPrev');
-        const certNext = document.getElementById('certNext');
-
-        if (certScroll && certPrev && certNext) {
-            const scrollAmount = 320;
-            certPrev.addEventListener('click', () => {
-                certScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
-            certNext.addEventListener('click', () => {
-                certScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
-        }
 
         // Active nav link highlighting
         const sections = document.querySelectorAll('section[id]');
